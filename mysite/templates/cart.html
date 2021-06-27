@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="box-element product">
+  <a href="{% url 'store' %}"  class="btn btn-outline-secondary add-btn">&#x2190;Continue Shopping</a>
+  <hr>
+  <table class="table">
+    <tr>
+      <th><h5><strong>Items:{{ order.get_cart_items }}</strong></h5></th>
+      <th><h5><strong>Total: {{ order.get_cart_total }}</strong></h5></th>
+      <th>  <a href="{% url 'checkout'%}" style="display: inline-block; float: right" class="btn btn-outline-success">Checkout</a></th>
+
+    </tr>
+  </table>
+</div>
+<br>
+<br>
+
+<!-- refer video for w/o using table and using Div -->
+<div class="box-element product">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td><img class="row-image img-fluid" src="{{ item.product.imageURL }}" alt=""></td>
+        <td>{{item.product.item_name}}</td>
+        <td >
+            <p class="quantity" style="vertical-align: top;">{{ item.quantity }}</p>
+            <div class="quantity">
+  							<img data-product= {{ item.product.id}} data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+  							<img data-product= {{ item.product.id}} data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+  					</div>
+        </td>
+        <td>{{item.product.item_price}}</td>
+        <td>{{item.getTotal}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}

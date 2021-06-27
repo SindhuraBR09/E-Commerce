@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% if productlist %}
+<div class="container">
+<div class="row">
+
+{% for item in productlist %}
+
+    <div class="col col-lg-4 col-sm-6 col-6">
+      <img class="thumbnail img-fluid" src="{{ item.imageURL}}" alt="">
+      <div class="box-element product">
+        <h6><strong>{{ item.item_name}}</strong></h6>
+        <hr>
+        <button data-product = {{item.id}} data-action="add" type="button" class="btn btn-outline-secondary add-btn update-cart" >Add To Cart</button>
+        <a href="#" class="btn btn-outline-warning">View</a>
+        <h4 style="display: inline-block; float: right"><strong>{{ item.item_price|floatformat:2}}</strong></h4>
+      </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+
+
+
+{% else %}
+<p>Nothing</p>
+{%endif%}
+
+{% endblock %}
