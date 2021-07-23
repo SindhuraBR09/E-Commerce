@@ -28,7 +28,7 @@ class UserLoginForm(UserCreationForm):
         }
 
 class OTPForm(forms.ModelForm):
-    otp = forms.TextInput(attrs={'placeholder': 'Enter OTP'})
+    otp = forms.TextInput(attrs={'placeholder': 'Enter OTP', 'class': 'textinputclass'})
 
     class Meta:
         model = Customer
