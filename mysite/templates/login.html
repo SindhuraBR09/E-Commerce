@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <div class="login-reg-panel">
+		<div class="login-info-box">
+			<h2>Have an account?</h2>
+			<p style="color:#404541;">Login using email-id</p>
+			<label  style="color:#404541;" id="label-register" for="log-reg-show">Login</label>
+			<input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
+		</div>
+
+		<div class="register-info-box">
+			<h2>Don't have an account?</h2>
+			<p style="color:#404541;">Please create your account</p>
+			<label id="label-login" for="log-login-show">Register</label>
+			<input type="radio" name="active-log-panel" id="log-login-show">
+		</div>
+
+		<div class="white-panel">
+			<div class="login-show">
+				<h2>LOGIN</h2>
+        <form method="post" action="">
+          {% csrf_token %}
+          {{ login_form.username }}
+          {{login_form.password1}}
+
+        <!-- <input type="text" placeholder="Email">
+				<input type="password" placeholder="Password"> -->
+        {% for message in messages %}
+              <div class="alert alert-success">
+                  <a class="close" href="#" data-dismiss="alert">×</a>
+                  {{ message }}
+                </div>
+        {% endfor %}
+				<input type="submit" name = "login" value="Login">
+				<a href="">Forgot password?</a>
+      </form>
+
+			</div>
+
+
+			<div class="register-show">
+				<h2>REGISTER</h2>
+				<!-- <input type="text" placeholder="Email">
+				<input type="password" placeholder="Password">
+				<input type="password" placeholder="Confirm Password">
+				<input type="button" value="Register"> -->
+        <form method="post" action="">
+          {% csrf_token %}
+          {% for field in register_form %}
+          {{ field }}
+          {%endfor%}
+
+          <input type="submit" name="register" value="Register">
+        </form>
+
+			</div>
+		</div>
+  </div>
+
+
+{% endblock %}

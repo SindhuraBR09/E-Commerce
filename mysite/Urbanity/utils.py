@@ -1,5 +1,8 @@
 from . models import *
 import json
+import os
+from twilio.rest import Client
+from twilio.http.http_client import TwilioHttpClient
 
 def cookieCart(request):
     try:
@@ -84,3 +87,15 @@ def guestOrder(request, data):
         )
 
     return customer, order
+
+def send_sms(otp, phonenumber):
+    print("Sindhura otp and phonenumber {} {}".format(otp, phonenumber))
+    proxy_client = TwilioHttpClient()
+    proxy_client.session.proxies = {'https': os.environ['https_proxy']}
+
+    account_sid = 'AC6c0b660543f1bcc4744ff3dca155b6e1'
+    auth_token = '2e3b556d08bcbc5e62c476639dbb59c2'
+    client = Client(account_sid, auth_token, http_client=proxy_client)
+    message = client.messages.create(body=f'Hi, your verification code is {otp}',
+                                    from_='+14088377119',
+                                    to=f'{phonenumber}')

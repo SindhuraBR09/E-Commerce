@@ -1,0 +1,155 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id="container">
+  <div id="row">
+    <div  id="col-2">
+      <img src="{% static 'images/image3.png' %}" id="landing_image" alt="" style="width:50%; height:665px">
+      <div  id="text_on_image">
+        <h1 id="tagline">THE COMPLETE ONLINE STORE</h1>
+        <h5 style="font-family: 'Times New Roman'">Best Trending Collection Here!</h5>
+        <a href="{% url 'products' %}" id="explore">Explore Now</a>
+      </div>
+
+    </div>
+    </div>
+</div>
+<br>
+
+<!-- <div class="categories">
+  <div class="small-container">
+    <div id="product_row">
+      <div class="col-3">
+        <img src="{% static 'images/category-1.jpg' %}" alt="">
+      </div>
+      <div class="col-3">
+        <img src="{% static 'images/category-5.jpg' %}" alt="">
+      </div>
+      <div class="col-3">
+        <img src="{% static 'images/category-3.jpg' %}" alt="">
+      </div>
+  </div>
+  </div>
+</div> -->
+
+<div class="categories">
+  <div class="small-container">
+    <h2 class="title">Our Offers</h2>
+    <div id="product_row">
+      <div class="col-3">
+        <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <img src="{% static 'images/free-delivery.png' %}" alt=""  style="height:25px; width:25px">
+            <br>
+            <h5 style="padding-top: 20px; font-weight: bold; color:black">Free Delivery</h5>
+            <br>
+            <p style="color:grey">We offer free delivery for the purchase above $1000</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <img src="{% static 'images/free-return.png' %}" alt=""  style="height:25px; width:25px">
+            <br>
+            <h5 style="padding-top: 20px; font-weight: bold; color:black">Free Return</h5>
+            <br>
+            <p style="color:grey">We offer free delivery for the purchase above $1000</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <img src="{% static 'images/customer-care.png' %}" alt=""  style="height:25px; width:25px">
+            <br>
+            <h5 style="padding-top: 20px; font-weight: bold; color:black">Customer Care</h5>
+            <br>
+            <p style="color:grey">We offer free delivery for the purchase above $1000</p>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+<div class="small-container">
+  <h2 class="title">Featured Products</h2>
+  <div id="product_row">
+    <div class="col-4">
+      <img src="{% static 'images/product-1.jpg' %}" alt="">
+      <h6>HRX Red Printed T-shirt</h6>
+      <div class="rating">
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p>$50.0</p>
+    </div>
+
+    <div class="col-4">
+      <img src="{% static 'images/product-2.jpg' %}" alt="">
+      <h6>HRX Red Printed T-shirt</h6>
+      <div class="rating">
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p>$50.0</p>
+    </div>
+
+    <div class="col-4">
+      <img src="{% static 'images/product-3.jpg' %}" alt="">
+      <h6>HRX Red Printed T-shirt</h6>
+      <div class="rating">
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p>$50.0</p>
+    </div>
+
+    <div class="col-4">
+      <img src="{% static 'images/product-5.jpg' %}" alt="">
+      <h6>HRX Red Printed T-shirt</h6>
+      <div class="rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star" ></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p>$50.0</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="offer">
+  <div class="small_container">
+    <div id="product_row">
+      <div class="col-2" style="display:block; vertical-align:middle; text-align:right">
+        <img  id="exclusive-img" src="{% static 'images/exclusive.png' %}" alt="">
+      </div>
+      <div class="col-2" style="display:block; vertical-align:middle; text-align:left">
+        <p>Exclusively available on our store</p>
+        <h1 style="font-weight: bold; color:black">Smart Band 4</h1>
+        <small>The Mi Watch Revolve comes in two elegant variants which ensure you stand out from the crowd. The 46mm stainless steel frame & AMOLED display makes for a large, vivid reading even under bright daylight. It also comes with Smart Always-on-Display that allows your display to stay on all day long except when the watch is off your wrist. </small>
+        <br>
+        <br>
+        <a href="#" id="explore">Buy Now</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -3,9 +3,20 @@
 <html lang="en" dir="ltr">
   <head>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
   integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
+
   <script type="text/javascript">
     var user = '{{ request.user }}'
 
@@ -52,44 +63,63 @@ console.log(cart);
     <title></title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'store'%}">Urbanity</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-fixed-top">
+    <a class="navbar-brand" href="{% url 'main'%}">Urbanity</a>
+    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img  class="navbar-toggler-icon" src="{% static 'images/hamburger.png' %}" alt="">
+      <!-- <span class="navbar-toggler-icon"></span> -->
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <!-- <li class="nav-item active">
-          <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
+
 
       </ul>
       <div class="form-inline my-2 my-lg-0">
-        <a href="#"class="btn btn-warning">Login</a>
+        <a href="{% url 'products' %}"  id="navbar-elements">PRODUCTS</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href=""  id="navbar-elements">ABOUT</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href=""  id="navbar-elements">ACCOUNT</a>
+      </div>
+      {% if user.is_authenticated %}
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{% url 'logoutUser' %}" id="navbar-elements">LOGOUT</a>
+      {% else %}
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{% url 'login' %}" id="navbar-elements">LOGIN</a>
+      {% endif %}
 
         <a href="{% url 'cart' %}">
-          <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+          <img  id="cart-icon" src="{% static 'images/cart_black.png' %}">
         </a>
-       <p id="cart-total">{{cartItems}}</p>
+        {% if cartItems %}
+          <p id="cart-total">{{cartItems}}</p>
+        {% endif %}
 
     </div>
     </div>
   </nav>
-  <div class="container">
+  <div>
     {% block content %}
     {% endblock %}
 
   </div>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script
+src="https://code.jquery.com/jquery-3.6.0.js"
+integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/cart.js'%}">
 
 </script>
+<script type="text/javascript" src="{% static 'js/login.js'%}"></script>
+
 </html>

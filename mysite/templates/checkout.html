@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
   <div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-6" style="padding-top:70px;">
 			<div class="box-element" id="form-wrapper">
 				<form id="form">
           <!-- {% csrf_token %} -->
@@ -15,7 +15,7 @@
 						</div>
 					</div>
 
-					<div id="shipping-info">
+					<div id="shipping-info" >
 						<hr>
 						<p>Shipping Information:</p>
 						<hr>
@@ -50,7 +50,7 @@
 
 		</div>
 
-		<div class="col-lg-6">
+		<div class="col-lg-6" style="padding-top:70px;">
 			<div class="box-element">
 				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
 				<hr>
@@ -169,7 +169,7 @@
           alert('Transaction Complete')
           cart = {}
           document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/"
-          window.location.href = "{% url 'store' %}"
+          window.location.href = "{% url 'products' %}"
       })
     }
 

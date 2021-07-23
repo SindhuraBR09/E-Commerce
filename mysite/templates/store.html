@@ -2,29 +2,85 @@
 {% load static %}
 {% block content %}
 {% if productlist %}
+
+<div class="input-group rounded" style="padding-top:70px; padding-left:200px; padding-right:150px;">
+  <h3 style="padding-right:700px; color:black;">All Products</h3>
+  <div id="autocomplete" class="autocomplete">
+  <input class="autocomplete-input"
+    placeholder="Search">
+  <ul class="autocomplete-result-list"></ul>
+</div>
+
+</div>
+
 <div class="container">
 <div class="row">
 
 {% for item in productlist %}
-
-    <div class="col col-lg-4 col-sm-6 col-6">
-      <img class="thumbnail img-fluid" src="{{ item.imageURL}}" alt="">
-      <div class="box-element product">
-        <h6><strong>{{ item.item_name}}</strong></h6>
+      <div class="col-4" style="padding-top:70px;">
+        <a href="{{item.id}}" style="	text-decoration: None;">
+        <img src="{{ item.imageURL}}" alt="" style="width: 100%; height:350px;">
+        </a>
         <hr>
-        <button data-product = {{item.id}} data-action="add" type="button" class="btn btn-outline-secondary add-btn update-cart" >Add To Cart</button>
-        <a href="#" class="btn btn-outline-warning">View</a>
-        <h4 style="display: inline-block; float: right"><strong>{{ item.item_price|floatformat:2}}</strong></h4>
+          <h6><strong>{{ item.item_name}}</strong></h6>
+
+          <h6>{{ item.item_price|floatformat:2}}</h6>
+          <button data-product = {{item.id}} data-action="add" type="button" class="btn btn btn-light add-btn update-cart add_to_cart" >Add To Cart</button>
+
       </div>
-    </div>
-{% endfor %}
-</div>
-</div>
+  {% endfor %}
+  </div>
+  </div>
 
+  {% else %}
+  <p>Nothing</p>
+  {%endif%}
 
+  <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+  <script type="text/javascript">
+    new Autocomplete('#autocomplete', {
 
-{% else %}
-<p>Nothing</p>
-{%endif%}
+      search : input =>{
+        console.log(input);
+        const url = `/search/?product=${input}`
+        return new Promise(resolve =>{
+          fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            console.log(JSON.stringify(data));
+            payload=[]
+            for (var i = 0; i < data.data.length; i++)
+            {
+              payload.push(data.data[i].item_name)
+            }
+            resolve(payload)
 
-{% endblock %}
+          })
+        })
+      },
+      onSubmit : result =>{
+        var url = '/showSearchedProduct/'
+
+        fetch(url, {
+          method:'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+            'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify({'productName':result})
+        })
+
+        .then((response) =>{
+            return response.json()
+        })
+
+        .then((data) =>{
+            console.log('data:', data)
+            document.location.href = data.data;
+
+        })
+      }
+    })
+  </script>
+
+  {% endblock %}
