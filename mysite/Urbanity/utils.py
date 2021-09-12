@@ -94,7 +94,7 @@ def send_sms(otp, phonenumber):
     proxy_client.session.proxies = {'https': os.environ['https_proxy']}
 
     account_sid = 'AC1f33b55133db6240c1141d14295e5717'
-    auth_token = 'f96d2421278abf6b9fa95da221b048f2'
+    auth_token = 'fa9eb2c437ceff0bf241cf43c456152c'
     client = Client(account_sid, auth_token, http_client=proxy_client)
     message = client.messages.create(body=f'Hi, your verification code is {otp}',
                                     from_='+12694312043',

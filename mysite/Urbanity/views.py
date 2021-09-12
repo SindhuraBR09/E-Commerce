@@ -11,6 +11,13 @@ from . utils import cartData,cookieCart, guestOrder, send_sms
 from .forms import CreateUserForm, UserLoginForm, OTPForm
 from django.contrib import messages
 import random
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+
+CACHE_TTL = getattr(settings ,'CACHE_TTL' , DEFAULT_TIMEOUT)
+
 # Create your views here.
 def login(request):
 
@@ -194,7 +201,13 @@ def search(request):
     product = request.GET.get('product')
     if product:
         payload=[]
-        results = Product.objects.filter(item_name__icontains=product).values()
+        if cache.get(product):
+            print("Data coming from cache")
+            results = cache.get(product)
+        else:
+            print("Data coming from Database")
+            results = Product.objects.filter(item_name__icontains=product).values()
+            cache.set(product, results)
         # results = results.values_list('item_name')
         for result in results:
             payload.append(result)
